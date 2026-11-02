@@ -8,6 +8,14 @@ from pydantic import BaseModel
 
 app = FastAPI(title="Wordle API Server")
 
+@app.get("/")
+def home():
+    return {
+        "message": "Welcome to Wordle API Server",
+        "docs": "/docs",
+        "status": "running"
+    }
+
 # 目前 client 是桌面程式，不受瀏覽器 CORS 限制。若日後改成網頁，
 # 再把 allow_origins 限定為實際前端網址。
 app.add_middleware(
